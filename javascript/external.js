@@ -11,6 +11,22 @@ function welcome()
     return message;
 }
 
+var webmaps =
+[
+    ["Google Maps", "https://www.google.com/maps"],
+    ["ArcGIS Online", "https://www.arcgis.com/index.html"]
+];
+
+var reviews =
+[
+    [
+        "Google Maps is mainly used to help people with directions, routes, traffic, and satellite imagery. It is easy to use and straightforward for everyday users. It can show routes, travel time, traffic, and different map layers. I would make it easier to hide some of the unwanted features that can make the map feel cluttered."
+    ],
+    [
+        "ArcGIS Online is used to create, view, share, and analyze maps. It has many useful GIS tools for mapping, finding locations, analyzing data, and measuring distance. It is useful for GIS users, researchers, and organizations, but it can be confusing for beginners. I would make the commonly used tools easier to find."
+    ]
+];
+
 function webmap_table()
 {
     document.write("<table width=100%>");
