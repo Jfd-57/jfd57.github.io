@@ -37,7 +37,18 @@ function webmap_table()
 
         for (var column=0; column < 3; column++)
         {
-            document.write("<td>" + row + "," + column + "</td>");
+            if (column === 0)
+            {
+                document.write("<td><a href='" + webmaps[row][1] + "' target='_blank'>" + webmaps[row][0] + "</a></td>");
+            }
+            else if (column === 1)
+            {
+                document.write("<td>" + reviews[row][0] + "</td>");
+            }
+            else
+            {
+                document.write("<td><a href='" + webmaps[row][1] + "' target='_blank'>Visit Webmap</a></td>");
+            }
         }
 
         document.write("</tr>");
