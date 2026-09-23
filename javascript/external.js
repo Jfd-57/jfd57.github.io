@@ -28,9 +28,16 @@ function webmap_table()
 
         for (var column=0; column < webmaps[0].length; column++)
         {
-            document.write("<td>" + webmaps[row][column] + "</td>");
+            if (column < 2)
+            {
+                document.write("<td>" + webmaps[row][column] + "</td>");
+            }
         }
 
+        document.write("</tr>");
+
+        document.write("<tr>");
+        document.write("<td colspan='2'>" + webmaps[row][2] + "</td>");
         document.write("</tr>");
     }
 
