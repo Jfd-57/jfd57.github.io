@@ -68,6 +68,7 @@
         </div>
 
         <div id="research-interests">
+
             <h3>Research Interests:</h3>
 
             <ol>
@@ -75,6 +76,7 @@
                 <li>Remote Sensing</li>
                 <li>Wildland Firefighting</li>
             </ol>
+
         </div>
 
         <div id="webmap-reviews">
@@ -90,14 +92,17 @@
         <h3>Seven Wonders of the World</h3>
         <br>
 
-        <div id="mapid" style="width: 600px; height: 400px; margin: auto; bottom: 30px;">
+        <div id="mapid"
+             style="width: 600px; height: 400px; margin: auto; bottom: 30px;">
 
             <script>
 
                 var mymap = L.map('mapid').setView([20, 10], 2);
 
-                L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                }).addTo(mymap);
+                L.tileLayer(
+                    'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                    {}
+                ).addTo(mymap);
 
 
                 // UNIQUE MARKER ICONS
@@ -162,7 +167,7 @@
                 tajMahal.bindPopup(
                     "<div class='wonder-popup'>" +
                     "<b>Taj Mahal</b><br>" +
-                    "<img src='https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Taj_Mahal_in_India_-_Kristian_Bertel.jpg/320px-Taj_Mahal_in_India_-_Kristian_Bertel.jpg'>" +
+                    "<img src='images/taj-mahal.jpg'>" +
                     "<p>The Taj Mahal is in Agra, India and is probably one of the most recognizable buildings in the world. It is known for its white marble and the way the entire complex is laid out.</p>" +
                     "</div>"
                 );
@@ -178,7 +183,7 @@
                 greatWall.bindPopup(
                     "<div class='wonder-popup'>" +
                     "<b>Great Wall of China</b><br>" +
-                    "<img src='https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/The_Great_Wall_of_China_at_Jinshanling-edit.jpg/320px-The_Great_Wall_of_China_at_Jinshanling-edit.jpg'>" +
+                    "<img src='images/great-wall.jpg'>" +
                     "<p>The Great Wall stretches across a huge part of northern China. Different sections were built over a long period of time to help defend Chinese territory and control movement across the region.</p>" +
                     "</div>"
                 );
@@ -194,7 +199,7 @@
                 petra.bindPopup(
                     "<div class='wonder-popup'>" +
                     "<b>Petra</b><br>" +
-                    "<img src='https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Treasury_petra_crop.jpeg/320px-Treasury_petra_crop.jpeg'>" +
+                    "<img src='images/petra.jpg'>" +
                     "<p>Petra is an ancient city in Jordan that is famous for buildings carved directly into the rock. What makes it really interesting is how the city was built into the desert landscape around it.</p>" +
                     "</div>"
                 );
@@ -210,7 +215,7 @@
                 christRedeemer.bindPopup(
                     "<div class='wonder-popup'>" +
                     "<b>Christ the Redeemer</b><br>" +
-                    "<img src='https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Aerial_view_of_the_Statue_of_Christ_the_Redeemer.jpg/320px-Aerial_view_of_the_Statue_of_Christ_the_Redeemer.jpg'>" +
+                    "<img src='images/christ-redeemer.jpg'>" +
                     "<p>Christ the Redeemer sits high above Rio de Janeiro in Brazil. Its location on top of the mountain makes the statue stand out over the city and has made it one of Brazil's most recognizable landmarks.</p>" +
                     "</div>"
                 );
@@ -226,7 +231,7 @@
                 machuPicchu.bindPopup(
                     "<div class='wonder-popup'>" +
                     "<b>Machu Picchu</b><br>" +
-                    "<img src='https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Machu_Picchu%2C_Peru.jpg/320px-Machu_Picchu%2C_Peru.jpg'>" +
+                    "<img src='images/machu-picchu.jpg'>" +
                     "<p>Machu Picchu is an old Inca site high in the mountains of Peru. What makes it stand out to me is the location because the city was built right into a pretty extreme mountain landscape.</p>" +
                     "</div>"
                 );
@@ -242,7 +247,7 @@
                 chichenItza.bindPopup(
                     "<div class='wonder-popup'>" +
                     "<b>Chichen Itza</b><br>" +
-                    "<img src='https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Chichen_Itza_3.jpg/320px-Chichen_Itza_3.jpg'>" +
+                    "<img src='images/chichen-itza.jpg'>" +
                     "<p>Chichen Itza is an ancient Maya site in Mexico. The large pyramid is its most famous structure, but the site also shows how advanced Maya building and planning were at the time.</p>" +
                     "</div>"
                 );
@@ -258,7 +263,7 @@
                 colosseum.bindPopup(
                     "<div class='wonder-popup'>" +
                     "<b>Colosseum</b><br>" +
-                    "<img src='https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Colosseo_2020.jpg/320px-Colosseo_2020.jpg'>" +
+                    "<img src='images/colosseum.jpg'>" +
                     "<p>The Colosseum is a massive Roman structure in the middle of Rome, Italy. Even though it is almost 2,000 years old, a large part of it is still standing and shows the scale of Roman construction.</p>" +
                     "</div>"
                 );
@@ -270,6 +275,7 @@
         <div id="copyright">
 
             <script>
+
                 // Gets the current date.
                 var today = new Date();
 
@@ -278,14 +284,11 @@
 
                 // Displays the copyright symbol and current year.
                 document.writeln("Copyright &copy; " + year);
+
             </script>
 
         </div>
 
-    </div>
-
-</body>
-</html>
     </div>
 
 </body>
