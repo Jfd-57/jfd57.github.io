@@ -103,26 +103,98 @@
                 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 }).addTo(mymap);
 
+
+                // Taj Mahal Icon
+                var tajIcon = L.divIcon({
+                    html: "🕌",
+                    className: "",
+                    iconSize: [30, 30]
+                });
+
+                // Great Wall Icon
+                var wallIcon = L.divIcon({
+                    html: "🧱",
+                    className: "",
+                    iconSize: [30, 30]
+                });
+
+                // Petra Icon
+                var petraIcon = L.divIcon({
+                    html: "🏛️",
+                    className: "",
+                    iconSize: [30, 30]
+                });
+
+                // Christ the Redeemer Icon
+                var christIcon = L.divIcon({
+                    html: "✝️",
+                    className: "",
+                    iconSize: [30, 30]
+                });
+
+                // Machu Picchu Icon
+                var machuIcon = L.divIcon({
+                    html: "⛰️",
+                    className: "",
+                    iconSize: [30, 30]
+                });
+
+                // Chichen Itza Icon
+                var chichenIcon = L.divIcon({
+                    html: "🔺",
+                    className: "",
+                    iconSize: [30, 30]
+                });
+
+                // Colosseum Icon
+                var colosseumIcon = L.divIcon({
+                    html: "🏟️",
+                    className: "",
+                    iconSize: [30, 30]
+                });
+
+
                 // Taj Mahal - India
-                var tajMahal = L.marker([27.174961, 78.042385]).addTo(mymap);
+                var tajMahal = L.marker(
+                    [27.174961, 78.042385],
+                    {icon: tajIcon}
+                ).addTo(mymap);
 
                 // Great Wall of China
-                var greatWall = L.marker([40.334245, 116.477652]).addTo(mymap);
+                var greatWall = L.marker(
+                    [40.334245, 116.477652],
+                    {icon: wallIcon}
+                ).addTo(mymap);
 
                 // Petra - Jordan
-                var petra = L.marker([30.328611, 35.441944]).addTo(mymap);
+                var petra = L.marker(
+                    [30.328611, 35.441944],
+                    {icon: petraIcon}
+                ).addTo(mymap);
 
                 // Christ the Redeemer - Brazil
-                var christRedeemer = L.marker([-22.951389, -43.2108334]).addTo(mymap);
+                var christRedeemer = L.marker(
+                    [-22.951389, -43.2108334],
+                    {icon: christIcon}
+                ).addTo(mymap);
 
                 // Machu Picchu - Peru
-                var machuPicchu = L.marker([-13.163056, -72.545556]).addTo(mymap);
+                var machuPicchu = L.marker(
+                    [-13.163056, -72.545556],
+                    {icon: machuIcon}
+                ).addTo(mymap);
 
                 // Chichen Itza - Mexico
-                var chichenItza = L.marker([20.682778, -88.569167]).addTo(mymap);
+                var chichenItza = L.marker(
+                    [20.682778, -88.569167],
+                    {icon: chichenIcon}
+                ).addTo(mymap);
 
                 // Colosseum - Rome
-                var colosseum = L.marker([41.890169, 12.492269]).addTo(mymap);
+                var colosseum = L.marker(
+                    [41.890169, 12.492269],
+                    {icon: colosseumIcon}
+                ).addTo(mymap);
 
             </script>
 
