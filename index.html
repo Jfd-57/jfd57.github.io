@@ -25,10 +25,6 @@
     <!-- Mapbox JavaScript -->
     <script src="https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.js"></script>
 
-    <!-- Leaflet Control Geocoder -->
-    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css">
-
     <!-- Mapbox Access Token -->
     <script src="javascript/secret_keys.js"></script>
 
@@ -82,13 +78,13 @@
         </div>
 
         <div id="webmap-reviews">
-            <p>
-                <h3>Webmap Reviews</h3>
 
-                <script>
-                    document.write(webmap_table());
-                </script>
-            </p>
+            <h3>Webmap Reviews</h3>
+
+            <script>
+                document.write(webmap_table());
+            </script>
+
         </div>
 
         <h3>Seven Wonders of the World</h3>
@@ -104,97 +100,168 @@
                 }).addTo(mymap);
 
 
-                // Taj Mahal Icon
+                // UNIQUE MARKER ICONS
+
                 var tajIcon = L.divIcon({
                     html: "🕌",
-                    className: "",
-                    iconSize: [30, 30]
+                    className: "wonder-icon",
+                    iconSize: [50, 50],
+                    iconAnchor: [25, 25]
                 });
 
-                // Great Wall Icon
                 var wallIcon = L.divIcon({
                     html: "🧱",
-                    className: "",
-                    iconSize: [30, 30]
+                    className: "wonder-icon",
+                    iconSize: [50, 50],
+                    iconAnchor: [25, 25]
                 });
 
-                // Petra Icon
                 var petraIcon = L.divIcon({
                     html: "🏛️",
-                    className: "",
-                    iconSize: [30, 30]
+                    className: "wonder-icon",
+                    iconSize: [50, 50],
+                    iconAnchor: [25, 25]
                 });
 
-                // Christ the Redeemer Icon
                 var christIcon = L.divIcon({
                     html: "✝️",
-                    className: "",
-                    iconSize: [30, 30]
+                    className: "wonder-icon",
+                    iconSize: [50, 50],
+                    iconAnchor: [25, 25]
                 });
 
-                // Machu Picchu Icon
                 var machuIcon = L.divIcon({
                     html: "⛰️",
-                    className: "",
-                    iconSize: [30, 30]
+                    className: "wonder-icon",
+                    iconSize: [50, 50],
+                    iconAnchor: [25, 25]
                 });
 
-                // Chichen Itza Icon
                 var chichenIcon = L.divIcon({
                     html: "🔺",
-                    className: "",
-                    iconSize: [30, 30]
+                    className: "wonder-icon",
+                    iconSize: [50, 50],
+                    iconAnchor: [25, 25]
                 });
 
-                // Colosseum Icon
                 var colosseumIcon = L.divIcon({
                     html: "🏟️",
-                    className: "",
-                    iconSize: [30, 30]
+                    className: "wonder-icon",
+                    iconSize: [50, 50],
+                    iconAnchor: [25, 25]
                 });
 
 
-                // Taj Mahal - India
+                // TAJ MAHAL
+
                 var tajMahal = L.marker(
                     [27.174961, 78.042385],
                     {icon: tajIcon}
                 ).addTo(mymap);
 
-                // Great Wall of China
+                tajMahal.bindPopup(
+                    "<div class='wonder-popup'>" +
+                    "<b>Taj Mahal</b><br>" +
+                    "<img src='https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Taj_Mahal_in_India_-_Kristian_Bertel.jpg/320px-Taj_Mahal_in_India_-_Kristian_Bertel.jpg'>" +
+                    "<p>The Taj Mahal is in Agra, India and is probably one of the most recognizable buildings in the world. It is known for its white marble and the way the entire complex is laid out.</p>" +
+                    "</div>"
+                );
+
+
+                // GREAT WALL OF CHINA
+
                 var greatWall = L.marker(
                     [40.334245, 116.477652],
                     {icon: wallIcon}
                 ).addTo(mymap);
 
-                // Petra - Jordan
+                greatWall.bindPopup(
+                    "<div class='wonder-popup'>" +
+                    "<b>Great Wall of China</b><br>" +
+                    "<img src='https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/The_Great_Wall_of_China_at_Jinshanling-edit.jpg/320px-The_Great_Wall_of_China_at_Jinshanling-edit.jpg'>" +
+                    "<p>The Great Wall stretches across a huge part of northern China. Different sections were built over a long period of time to help defend Chinese territory and control movement across the region.</p>" +
+                    "</div>"
+                );
+
+
+                // PETRA
+
                 var petra = L.marker(
                     [30.328611, 35.441944],
                     {icon: petraIcon}
                 ).addTo(mymap);
 
-                // Christ the Redeemer - Brazil
+                petra.bindPopup(
+                    "<div class='wonder-popup'>" +
+                    "<b>Petra</b><br>" +
+                    "<img src='https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Treasury_petra_crop.jpeg/320px-Treasury_petra_crop.jpeg'>" +
+                    "<p>Petra is an ancient city in Jordan that is famous for buildings carved directly into the rock. What makes it really interesting is how the city was built into the desert landscape around it.</p>" +
+                    "</div>"
+                );
+
+
+                // CHRIST THE REDEEMER
+
                 var christRedeemer = L.marker(
                     [-22.951389, -43.2108334],
                     {icon: christIcon}
                 ).addTo(mymap);
 
-                // Machu Picchu - Peru
+                christRedeemer.bindPopup(
+                    "<div class='wonder-popup'>" +
+                    "<b>Christ the Redeemer</b><br>" +
+                    "<img src='https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Aerial_view_of_the_Statue_of_Christ_the_Redeemer.jpg/320px-Aerial_view_of_the_Statue_of_Christ_the_Redeemer.jpg'>" +
+                    "<p>Christ the Redeemer sits high above Rio de Janeiro in Brazil. Its location on top of the mountain makes the statue stand out over the city and has made it one of Brazil's most recognizable landmarks.</p>" +
+                    "</div>"
+                );
+
+
+                // MACHU PICCHU
+
                 var machuPicchu = L.marker(
                     [-13.163056, -72.545556],
                     {icon: machuIcon}
                 ).addTo(mymap);
 
-                // Chichen Itza - Mexico
+                machuPicchu.bindPopup(
+                    "<div class='wonder-popup'>" +
+                    "<b>Machu Picchu</b><br>" +
+                    "<img src='https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Machu_Picchu%2C_Peru.jpg/320px-Machu_Picchu%2C_Peru.jpg'>" +
+                    "<p>Machu Picchu is an old Inca site high in the mountains of Peru. What makes it stand out to me is the location because the city was built right into a pretty extreme mountain landscape.</p>" +
+                    "</div>"
+                );
+
+
+                // CHICHEN ITZA
+
                 var chichenItza = L.marker(
                     [20.682778, -88.569167],
                     {icon: chichenIcon}
                 ).addTo(mymap);
 
-                // Colosseum - Rome
+                chichenItza.bindPopup(
+                    "<div class='wonder-popup'>" +
+                    "<b>Chichen Itza</b><br>" +
+                    "<img src='https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Chichen_Itza_3.jpg/320px-Chichen_Itza_3.jpg'>" +
+                    "<p>Chichen Itza is an ancient Maya site in Mexico. The large pyramid is its most famous structure, but the site also shows how advanced Maya building and planning were at the time.</p>" +
+                    "</div>"
+                );
+
+
+                // COLOSSEUM
+
                 var colosseum = L.marker(
                     [41.890169, 12.492269],
                     {icon: colosseumIcon}
                 ).addTo(mymap);
+
+                colosseum.bindPopup(
+                    "<div class='wonder-popup'>" +
+                    "<b>Colosseum</b><br>" +
+                    "<img src='https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Colosseo_2020.jpg/320px-Colosseo_2020.jpg'>" +
+                    "<p>The Colosseum is a massive Roman structure in the middle of Rome, Italy. Even though it is almost 2,000 years old, a large part of it is still standing and shows the scale of Roman construction.</p>" +
+                    "</div>"
+                );
 
             </script>
 
@@ -215,6 +282,10 @@
 
         </div>
 
+    </div>
+
+</body>
+</html>
     </div>
 
 </body>
