@@ -21,7 +21,7 @@
 
     <title>Chance Cooper</title>
 
-    <!-- All Styling for this HTML document is contained in this external CSS file -->
+    <!-- Main CSS -->
     <link rel="stylesheet" type="text/css" href="css/main_style.css">
 
 </head>
@@ -84,6 +84,7 @@
         <div id="mapid" style="width: 600px; height: 400px; margin: auto; bottom: 30px;">
 
             <script>
+
                 var mymap = L.map('mapid').setView([51.505, -0.09], 13);
 
                 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?access_token={accessToken}', {
@@ -91,6 +92,9 @@
                     id: 'mapbox.mapbox-traffic-v1',
                     accessToken: mapbox_access_token
                 }).addTo(mymap);
+
+                var marker = L.marker([51.5, -0.09]).addTo(mymap);
+
             </script>
 
         </div>
