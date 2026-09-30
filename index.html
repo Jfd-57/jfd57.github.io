@@ -19,6 +19,12 @@
             integrity="sha256-NDI0K41gVbWqfkkaHj15IzU7PtMoelkzyKp8TOaFQ3s="
             crossorigin=""></script>
 
+    <!-- Mapbox CSS -->
+    <link rel="stylesheet" href="https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.css">
+
+    <!-- Mapbox JavaScript -->
+    <script src="https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.js"></script>
+
     <!-- Mapbox Access Token -->
     <script src="javascript/secret_keys.js"></script>
 
@@ -90,9 +96,9 @@
 
                 var mymap = L.map('mapid');
 
-                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?access_token={accessToken}', {
+                L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
                     maxZoom: 18,
-                    id: 'mapbox.mapbox-traffic-v1',
+                    id: 'mapbox/streets-v11',
                     accessToken: mapbox_access_token
                 }).addTo(mymap);
 
