@@ -91,37 +91,38 @@
             </p>
         </div>
 
-        <h3>Geocoding Map</h3>
+        <h3>Seven Wonders of the World</h3>
         <br>
 
         <div id="mapid" style="width: 600px; height: 400px; margin: auto; bottom: 30px;">
 
             <script>
 
-                var mymap = L.map('mapid');
+                var mymap = L.map('mapid').setView([20, 10], 2);
 
                 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 }).addTo(mymap);
 
-                var geocoder = L.Control.geocoder({
-                    defaultMarkGeocode: false,
-                    geocoder: new L.Control.Geocoder.Nominatim()
-                }).on('markgeocode', function(e) {
+                // Taj Mahal - India
+                var tajMahal = L.marker([27.174961, 78.042385]).addTo(mymap);
 
-                    var bbox = e.geocode.bbox;
+                // Great Wall of China
+                var greatWall = L.marker([40.334245, 116.477652]).addTo(mymap);
 
-                    var poly = L.polygon([
-                        bbox.getSouthEast(),
-                        bbox.getNorthEast(),
-                        bbox.getNorthWest(),
-                        bbox.getSouthWest()
-                    ]);
+                // Petra - Jordan
+                var petra = L.marker([30.328611, 35.441944]).addTo(mymap);
 
-                    mymap.fitBounds(poly.getBounds());
+                // Christ the Redeemer - Brazil
+                var christRedeemer = L.marker([-22.951389, -43.2108334]).addTo(mymap);
 
-                }).addTo(mymap);
+                // Machu Picchu - Peru
+                var machuPicchu = L.marker([-13.163056, -72.545556]).addTo(mymap);
 
-                mymap.setView([0,0], 1);
+                // Chichen Itza - Mexico
+                var chichenItza = L.marker([20.682778, -88.569167]).addTo(mymap);
+
+                // Colosseum - Rome
+                var colosseum = L.marker([41.890169, 12.492269]).addTo(mymap);
 
             </script>
 
