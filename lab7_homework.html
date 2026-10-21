@@ -1,0 +1,223 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no"/>
+
+    <title>Lab 7 Homework - Texas Counties</title>
+
+    <!-- Load the ArcGIS JavaScript API -->
+    <link rel="stylesheet" href="https://js.arcgis.com/4.21/esri/themes/light/main.css"/>
+    <script src="https://js.arcgis.com/4.21/"></script>
+
+    <style>
+        /* Make the map fill the browser window */
+        html, body, #viewDiv {
+            padding: 0;
+            margin: 0;
+            height: 100%;
+            width: 100%;
+        }
+
+        /* Position the webpage title and navigation */
+        #header {
+            position: absolute;
+            top: 10px;
+            left: 65px;
+            z-index: 10;
+            background-color: white;
+            padding: 10px;
+        }
+
+        #header h2 {
+            margin: 0 0 8px 0;
+        }
+
+        /* Style the county query panel */
+        #optionsDiv {
+            background-color: dimgray;
+            color: white;
+            padding: 10px;
+            width: 260px;
+        }
+
+        /* Position copyright information over the map */
+        #footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            z-index: 10;
+            background-color: white;
+            padding: 5px;
+            font-size: 12px;
+        }
+    </style>
+
+    <script>
+        require([
+            "esri/Map",
+            "esri/views/MapView",
+            "esri/layers/FeatureLayer",
+            "esri/layers/TileLayer",
+            "esri/layers/GraphicsLayer"
+        ], (Map, MapView, FeatureLayer, TileLayer, GraphicsLayer) => {
+
+            // Add the transportation tile layer
+            const transportation = new TileLayer({
+                url: "https://services.arcgisonline.com/ArcGIS/rest/services/Reference/World_Transportation/MapServer"
+            });
+
+            // Load county boundaries from the Esri Census Counties service
+            // STATE = '48' limits the displayed data to Texas
+            const counties = new FeatureLayer({
+                url: "https://services.arcgis.com/V6ZHFr6zdgNZuVG0/ArcGIS/rest/services/Census_Counties_20m/FeatureServer/0",
+                definitionExpression: "STATE = '48'"
+            });
+
+            // Create a graphics layer to show query results
+            const resultsLayer = new GraphicsLayer();
+
+            // Create the map with the required tile layer and county data
+            const map = new Map({
+                basemap: "streets",
+                layers: [transportation, counties, resultsLayer]
+            });
+
+            // Start the map centered on Texas
+            const view = new MapView({
+                container: "viewDiv",
+                map: map,
+                center: [-99.0, 31.0],
+                zoom: 6
+            });
+
+            // Add the query panel when the map is ready
+            view.when(() => {
+                view.ui.add("optionsDiv", "bottom-right");
+
+                // Run the query when the button is clicked
+                document.getElementById("doBtn").addEventListener("click", doQuery);
+            });
+
+            // Query Texas counties using the selected area values
+            function doQuery() {
+
+                // Clear previous query results
+                resultsLayer.removeAll();
+
+                // Get the values selected by the user
+                const comparison = document.getElementById("signSelect").value;
+                const area = document.getElementById("valSelect").value;
+
+                // Create a query using the Census Area attribute
+                const query = counties.createQuery();
+
+                // Restrict the query to Texas counties
+                query.where = "STATE = '48' AND CENSUSAREA " + comparison + " " + area;
+
+                // Return the county geometry and attributes
+                query.returnGeometry = true;
+                query.outFields = ["*"];
+
+                // Execute the query
+                counties.queryFeatures(query).then((response) => {
+
+                    const results = response.features;
+
+                    // Show the number of matching counties
+                    document.getElementById("printResults").textContent =
+                        results.length + " results found!";
+
+                    // Highlight matching counties in yellow
+                    results.forEach((feature) => {
+
+                        feature.symbol = {
+                            type: "simple-fill",
+                            color: [255, 255, 0, 0.5],
+                            outline: {
+                                color: "black",
+                                width: 1
+                            }
+                        };
+
+                        resultsLayer.add(feature);
+                    });
+
+                    // Animate the map to show the query results
+                    if (results.length > 0) {
+                        view.goTo(results);
+                    }
+
+                }).catch((error) => {
+
+                    // Report errors if the query fails
+                    console.error("Query error:", error);
+
+                    document.getElementById("printResults").textContent =
+                        "Query failed.";
+                });
+            }
+
+        });
+
+        // Open the selected lab exercise in a new browser tab
+        function openLabPage(select) {
+            if (select.value !== "") {
+                window.open(select.value, "_blank");
+                select.selectedIndex = 0;
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <!-- Main map -->
+    <div id="viewDiv"></div>
+
+    <!-- Webpage title and links to the six lab exercises -->
+    <div id="header">
+        <h2>Texas County Area Map</h2>
+
+        <select onchange="openLabPage(this)">
+            <option value="">Select a Lab 7 Page</option>
+            <option value="simple_mapping.html">Simple Mapping</option>
+            <option value="tile_layer.html">Tile Layers</option>
+            <option value="dynamic_layers.html">Dynamic Layers</option>
+            <option value="on_event.html">On Event</option>
+            <option value="basemap_gallery.html">Basemap Gallery</option>
+            <option value="query_task.html">Query Task</option>
+        </select>
+    </div>
+
+    <!-- Dropdown controls for querying Texas counties -->
+    <div class="esri-widget" id="optionsDiv">
+        <h3>Texas County Area</h3>
+
+        <!-- Select the comparison -->
+        <select class="esri-widget" id="signSelect">
+            <option value=">">is greater than</option>
+            <option value="<">is less than</option>
+        </select>
+
+        <!-- Select the area threshold -->
+        <select class="esri-widget" id="valSelect">
+            <option value="500">500 square miles</option>
+            <option value="1000">1,000 square miles</option>
+            <option value="2000">2,000 square miles</option>
+            <option value="5000">5,000 square miles</option>
+        </select>
+
+        <!-- Run the query -->
+        <button class="esri-widget" id="doBtn">Do Query</button>
+
+        <!-- Display query results -->
+        <p><span id="printResults"></span></p>
+    </div>
+
+    <!-- Copyright information overlapping the map -->
+    <div id="footer">
+        Copyright &copy; 2026 | Map data: Esri
+    </div>
+</body>
+</html>
